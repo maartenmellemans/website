@@ -1,0 +1,15 @@
+div(class="row")
+	div(class="span4 offset4")
+		div(class="alert alert-error", ng-show="showError")
+			{{errorMessage}}
+		form(ng-submit="login()")
+			div
+				label Username:
+				input(class="input-block-level", type="text", ng-model="username")
+			div
+				label Password:
+				input(class="input-block-level", type="password", ng-model="password")
+			div
+				button(class="btn", type="submit") Login
+				a(ng-click="goForgot()") 
+					p(class="forgotLink") Forgot password?

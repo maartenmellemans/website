@@ -1,0 +1,44 @@
+div(ng-show="userExists && !isPrivate")
+	div(class="row userProfile")
+		div(class="span9 username")
+			p(class="value") {{profile.username}}
+				span Journal of
+		div(class="span1", ng-show="!profile.ownProfile") 
+		div(class="span1 allowance", ng-show="profile.ownProfile")
+			p(class="value") {{profile.allowance}}
+				span Left
+		div(class="span1 entries")
+			p(class="value") {{journal.length}}
+				span Sentences
+		div(class="span1 average")
+			p(class="value") {{average}}
+				span a Day
+
+	div(class="row journalAdd", ng-show="profile.ownProfile")
+		div(class="span12")
+			div(class="alert alert-error", ng-show="showError")
+				{{errorMessage}}
+			form(class="journalEntryForm", ng-submit="saveJournalEntry()")
+				textarea(class="input-block-level", rows="2", ng-model="journalEntry", maxlength="100", placeholder="Add a new sentence..")
+				div
+					p(class="floatLeft") {{100-journalEntry.length}}
+					button(class="btn floatRight", type="submit") Save sentence
+			
+
+	div(class="row journal")
+		div(class="span12")
+			div(class="row journalEntry",ng-repeat="journalEntry in journal")
+				div(class="span3 ")
+					p(class="createdAt") {{toCreatedAt(journalEntry.createdAt)}} 
+					p(class="createdAgo") {{toCreatedAgo(journalEntry.createdAt)}}
+				div(class="span9") 
+					p(class="content") {{journalEntry.content}}
+
+	
+div(class="row", ng-show="!userExists")
+	div(class="span12 userNoExists")
+		p User doesn't exist
+
+div(class="row", ng-show="userExists && isPrivate")
+	div(class="span12 userIsPrivate")
+		p User is private

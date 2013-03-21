@@ -1,0 +1,18 @@
+div(class="row")
+	div(class="span4 offset4")
+		form(name="registerForm", ng-submit="saveUser()", novalidate)
+			div
+				label Username:
+				input(class="input-block-level", type="text", name="username", ng-model="newUser.username", ng-change="checkUsername()", ng-minlength="3", ng-maxlength="15", maxlength="15", placeholder="Between 3 and 15 characters", required)
+				p(class="errorText", ng-show="!!registerForm.username.$error.blacklist") Username already taken
+			div
+				label Email:
+				input(class="input-block-level", type="email", name="email", ng-model="newUser.email", ng-change="checkEmail()", required)
+				p(class="errorText", ng-show="!!registerForm.email.$error.blacklist") Email already taken
+			div
+				label Password:
+				input(class="input-block-level", type="password", ng-model="newUser.password", required)
+			div
+				button(class="btn", ng-disabled="registerForm.$invalid", type="submit") Register
+				a(ng-click="goLogin()")
+					p(class="forgotLink") Already registered? Login here!

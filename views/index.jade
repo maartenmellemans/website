@@ -1,0 +1,40 @@
+extends layout
+
+block body
+ div(id="wrap")
+  div(ng-controller="headerController")
+   div(class="topStripe")
+   div(class="container-fluid")
+    div(class="row-fluid")
+     div(class="span12")
+      div(class="headerButtons")
+       a(class="homeBtn", ng-click="goHome()")
+        img(ng-src="/img/logo.png")
+       a(class="infoBtn", ng-click="goInfo()") Information
+       a(class="contactBtn", ng-click="goContact()") Contact
+  div(class="container-fluid bodyContent")
+   div(ng-view)
+  div(id="push")
+ div(id="footer")
+  div(class="container-fluid")
+   div(class="row-fluid")
+    div(class="span12")
+     p(class="copyright") © Maarten Mellemans 2013. All rights reserved.
+
+
+  script(src='/socket.io/socket.io.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
+  script(src='js/lib/plugins/d3.v3.js')
+  script(src='js/lib/angular/angular.js')
+  script(src='js/lib/plugins/bootstrap-dropdown.js')
+  script(src='js/lib/plugins/onmediaquery.min.js')
+  script(src='js/lib/plugins/angular-ui.min.js')
+  script(src='js/lib/plugins/moment.min.js')
+
+  script(src='js/app.js')
+  script(src='js/services.js')
+  script(src='js/controllers.js')
+  script(src='js/filters.js')
+  script(src='js/directives.js')
+
+ 

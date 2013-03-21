@@ -1,0 +1,18 @@
+div(class="row")
+	div(class="span12")
+		p(class="infoMessage") Please fill in the reset ID you can find in the email we've sent you.
+
+div(class="row")
+	div(class="span4 offset4")
+		div(class="alert alert-error", ng-show="showError")
+			{{errorMessage}}
+		form(ng-submit="saveNewPass()")
+			div
+				label Reset ID:
+				input(class="input-block-level", type="text", ng-model="resetId")
+			div
+				label New Password:
+				input(class="input-block-level", type="password", ng-model="password")
+			div
+				button(class="btn", type="submit") Reset password
+		

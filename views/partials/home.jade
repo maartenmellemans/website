@@ -1,0 +1,21 @@
+div(class="row-fluid")
+	div(class="span12")
+		div(class="search")
+			input(type="text", placeholder="Search location", ng-model="query", ng-change="search()", class="searchField")
+		div
+			label Camera Look
+			label(class="radio inline")
+				input(type="radio", ng-model="cameraLook", value="null", ng-change="search()")
+				p Both
+			label(class="radio inline")
+				input(type="radio", ng-model="cameraLook", value="true", ng-change="search()")
+				p Yes
+			label(class="radio inline")
+				input(type="radio", ng-model="cameraLook", value="false", ng-change="search()")
+				p No
+
+div(class="row-fluid")
+	div(class="span12")
+		div(class="menuThumb", ng-repeat="thumb in filteredPictures", ng-controller="thumbController")
+			a(ng-click="goImage()")
+				img(ng-src="/img/{{thumb.filename}}.jpg", alt="{{thumb.title}}", title="{{thumb.title}}")

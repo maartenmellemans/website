@@ -1,0 +1,54 @@
+div(class="row")
+	div(class="span12")
+		div(class="alert alert-error", ng-show="showError")
+			{{errorMessage}}
+		form(ng-submit="savePicture()")
+			div
+				label Title:
+				input(class="input-block-level", type="text", ng-model="picture.title")
+			div
+				label Filename:
+				input(class="input-block-level", type="text", ng-model="picture.filename")
+			div
+				label Tags:
+				input(class="input-block-level", type="text", ng-model="picture.tags", disabled)
+			div
+				label Location:
+				input(class="input-block-level", type="text", ng-model="picture.location")
+			div
+				label Number of People:
+				input(class="input-block-level", type="number", ng-model="picture.numberOfPeople")
+			div
+				label Series:
+				input(class="input-block-level", type="text", ng-model="picture.series")
+			div
+				label Camera Look
+				label(class="checkbox")
+					input(type="checkbox", ng-model="picture.cameraLook")
+					p Looks in camera.
+			div
+				label Featured
+				label(class="checkbox")
+					input(type="checkbox", ng-model="picture.featured")
+					p Is featured.
+			div
+				label Black & White
+				label(class="checkbox")
+					input(type="checkbox", ng-model="picture.blackWhite")
+					p Is black & white.
+			div
+				label Gender
+				label(class="radio inline")
+					input(type="radio", ng-model="picture.gender", value="None")
+					p None
+				label(class="radio inline")
+					input(type="radio", ng-model="picture.gender", value="Male")
+					p Male
+				label(class="radio inline")
+					input(type="radio", ng-model="picture.gender", value="Female")
+					p Female
+				label(class="radio inline")
+					input(type="radio", ng-model="picture.gender", value="Both")
+					p Both
+			div
+				button(class="btn", type="submit") Send email
