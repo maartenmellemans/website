@@ -51,8 +51,31 @@ module.exports = {
         callback(null)
       }
     })
+  },
+
+  updatePicture: function (data, callback) {
+    Pics.findById(data._id, function (err, picture) {
+      picture.title = data.picture;
+      picture.filename = data.filename;
+      picture.location = data.location;
+      picture.numberOfPeople = data.numberOfPeople;
+      picture.series = data.series;
+      picture.cameraLook = data.cameraLook;
+      picture.featured = data.featured;
+      picture.blackWhite = data.blackWhite;
+      picture.gender = data.gender;
+      picture.latestEdit = moment()._d;
+
+      picture.save(function(err) {
+          if (err) {
+              console.log('error updating picture');
+              console.log(err);
+          } else {
+              console.log('picture successfully updated');
+          }
+      });
+    });
   }
-  
 }
 
 //FOR EACH HELPER

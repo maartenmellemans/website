@@ -1,26 +1,26 @@
-div(class="row")
+div(class="row-fluid")
 	div(class="span12")
 		div(class="alert alert-error", ng-show="showError")
 			{{errorMessage}}
 		form(ng-submit="savePicture()")
 			div
 				label Title:
-				input(class="input-block-level", type="text", ng-model="picture.title")
+				input(class="input", type="text", ng-model="picture.title")
 			div
 				label Filename:
-				input(class="input-block-level", type="text", ng-model="picture.filename")
+				input(class="input", type="text", ng-model="picture.filename")
 			div
 				label Tags:
-				input(class="input-block-level", type="text", ng-model="picture.tags", disabled)
+				input(class="input", type="text", ng-model="picture.tags", disabled)
 			div
 				label Location:
-				input(class="input-block-level", type="text", ng-model="picture.location")
+				input(class="input", type="text", ng-model="picture.location")
 			div
 				label Number of People:
-				input(class="input-block-level", type="number", ng-model="picture.numberOfPeople")
+				input(class="input", type="number", ng-model="picture.numberOfPeople")
 			div
 				label Series:
-				input(class="input-block-level", type="text", ng-model="picture.series")
+				input(class="input", type="text", ng-model="picture.series")
 			div
 				label Camera Look
 				label(class="checkbox")
@@ -51,4 +51,55 @@ div(class="row")
 					input(type="radio", ng-model="picture.gender", value="Both")
 					p Both
 			div
-				button(class="btn", type="submit") Send email
+				button(class="btn", type="submit") Save Picture
+		div
+			table(class="table table-hover adminlist")
+				thead
+					tr
+						th Index
+						th Title
+						th Filename
+						th Series
+						th Black & White
+						th Location
+						th Number of People
+						th Camera Look
+						th Gender
+						th Featured
+				tbody
+					tr(ng-repeat="picture in pics", ng-controller="editController")
+						td {{$index}}
+						td 
+							input(class="input-medium", type="text", ng-model="picture.title")
+						td 
+							input(class="input-medium", type="text", ng-model="picture.filename")
+						td 
+							input(class="input-medium", type="text", ng-model="picture.series")
+						td 
+							label(class="checkbox")
+								input(type="checkbox", ng-model="picture.blackWhite")
+						td 
+							input(class="input-medium", type="text", ng-model="picture.location")
+						td 
+							input(class="input-mini", type="number", ng-model="picture.numberOfPeople")
+						td 
+							label(class="checkbox")
+								input(type="checkbox", ng-model="picture.cameraLook")
+						td
+							label(class="radio inline")
+								input(type="radio", ng-model="picture.gender", value="None")
+								p None
+							label(class="radio inline")
+								input(type="radio", ng-model="picture.gender", value="Male")
+								p Male
+							label(class="radio inline")
+								input(type="radio", ng-model="picture.gender", value="Female")
+								p Female
+							label(class="radio inline")
+								input(type="radio", ng-model="picture.gender", value="Both")
+								p Both
+						td 
+							label(class="checkbox")
+								input(type="checkbox", ng-model="picture.featured")
+						td
+							button(class="btn btn-success", ng-click="updatePicture()") Update

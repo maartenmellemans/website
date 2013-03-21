@@ -13,6 +13,7 @@ function homeController($scope, $rootScope, socket, $location, $filter) {
 	$scope.query ="";
 	$scope.activeTags = [];
 	$scope.cameraLook = "null";
+	$scope.blackWhite = "null";
 
 	// search helpers
 	var searchMatch = function (haystack, needle) {
@@ -45,7 +46,7 @@ function homeController($scope, $rootScope, socket, $location, $filter) {
 	$scope.search = function () {
 		console.log("search");
 	    $scope.filteredPictures = $filter('filter')($scope.pics, function (picture) {
-		    return (searchBoolean(picture.cameraLook, $scope.cameraLook) && searchMatch(picture.location, $scope.query));
+		    return (searchBoolean(picture.cameraLook, $scope.cameraLook) && searchBoolean(picture.blackWhite, $scope.blackWhite) && searchMatch(picture.location, $scope.query));
 	    });
 
 	    console.log($scope.filteredPictures);
@@ -80,6 +81,12 @@ function adminController($scope, socket) {
 		"gender":"None"
 	};
 
+	socket.emit('init:send');
+
+	socket.on('init:return', function(data) {
+		$scope.pics = data.pictures;
+	});
+
 	$scope.savePicture = function() {
 		socket.emit('picture:save', {
 			picture:$scope.picture
@@ -100,3 +107,12 @@ function thumbController($scope, $location) {
 		$location.path('/image/' + $scope.thumb.filename);
 	}
 }
+
+function editController($scope, socket, $location) {
+	$scope.updatePicture = function() {
+		socket.emit('picture:update', {
+			picture: $scope.picture
+		})
+	}
+}
+

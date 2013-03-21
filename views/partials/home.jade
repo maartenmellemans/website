@@ -13,6 +13,17 @@ div(class="row-fluid")
 			label(class="radio inline")
 				input(type="radio", ng-model="cameraLook", value="false", ng-change="search()")
 				p No
+		div
+			label Black & White
+			label(class="radio inline")
+				input(type="radio", ng-model="blackWhite", value="null", ng-change="search()")
+				p Both
+			label(class="radio inline")
+				input(type="radio", ng-model="blackWhite", value="true", ng-change="search()")
+				p Yes
+			label(class="radio inline")
+				input(type="radio", ng-model="blackWhite", value="false", ng-change="search()")
+				p No
 
 div(class="row-fluid")
 	div(class="span12")

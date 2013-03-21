@@ -20,6 +20,12 @@ module.exports = function (socket) {
 			console.log(err);
 		})
 	})
+
+    socket.on('picture:update', function (data) {
+        DB.updatePicture(data.picture, function (err) {
+            console.log(err);
+        })
+    })
 };
 
 
