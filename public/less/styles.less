@@ -36,25 +36,14 @@
     text-decoration: none;
   }
 
-  .infoBtn {
+  .menuBtn {
     float:left;
     cursor: pointer;
     font-size: 10px;
     font-weight: bold;
     color:#333;
     text-decoration: none;
-    margin-left: 8px;
-    margin-top: 8px;
-  }
-
-  .contactBtn {
-    float:left;
-    cursor: pointer;
-    font-size: 10px;
-    font-weight: bold;
-    color:#333;
-    text-decoration: none;
-    margin-left: 8px;
+    margin-left: 10px;
     margin-top: 8px;
   }
 }
@@ -84,3 +73,31 @@
     width: auto;
   }
 }
+
+.info {
+  float:left;
+  display: block-inline;
+  text-transform: uppercase;
+  color: #333; 
+}
+
+.filters {
+  float:left;
+  a {
+    text-transform: uppercase;
+    color: #ccc; 
+    font-weight: bold;
+  }
+  a:hover {
+    color: @osjAccent;
+    text-decoration: none;
+  }
+  .active {
+    color: #333;
+  }
+  .filter {
+    float:left;
+    margin-right: 20px;
+  }
+}
+

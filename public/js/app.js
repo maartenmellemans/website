@@ -11,6 +11,17 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.postFix' ,'myApp.se
     $locationProvider.html5Mode(true);
   }]);
 
+myApp.value('ui.config', {
+   // The ui-jq directive namespace
+   jq: {
+      // The Tooltip namespace
+      tooltip: {
+         // Tooltip options. This object will be used as the defaults
+         placement: 'bottom'
+      }
+   }
+});
+
 myApp.run(function ($rootScope, socket, logoutService) {
 
     $rootScope.$safeApply = function ($scope, fn) {

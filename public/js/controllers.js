@@ -12,8 +12,8 @@ function homeController($scope, $rootScope, socket, $location, $filter) {
 
 	$scope.query ="";
 	$scope.activeTags = [];
-	$scope.cameraLook = "null";
 	$scope.blackWhite = "null";
+	$scope.series = "null";
 
 	// search helpers
 	var searchMatch = function (haystack, needle) {
@@ -23,10 +23,20 @@ function homeController($scope, $rootScope, socket, $location, $filter) {
 	    return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
 	};
 
-	var searchBoolean = function (haystack, needle) {
+	var searchColor = function (haystack, needle) {
 	    if (needle == "null") {
 		    return true;
 	    } else if (haystack.toString() !== needle) {
+	    	return false
+	    } else {
+	    	return true
+	    }
+	};
+
+	var searchSeries = function (haystack, needle) {
+	    if (needle == "null") {
+		    return true;
+	    } else if (haystack !== needle) {
 	    	return false
 	    } else {
 	    	return true
@@ -45,8 +55,10 @@ function homeController($scope, $rootScope, socket, $location, $filter) {
 
 	$scope.search = function () {
 		console.log("search");
+
 	    $scope.filteredPictures = $filter('filter')($scope.pics, function (picture) {
-		    return (searchBoolean(picture.cameraLook, $scope.cameraLook) && searchBoolean(picture.blackWhite, $scope.blackWhite) && searchMatch(picture.location, $scope.query));
+	    	console.log(searchMatch(picture.gender, $scope.gender));
+		    return (searchSeries(picture.series, $scope.series) && searchColor(picture.blackWhite, $scope.blackWhite) && searchMatch(picture.location, $scope.query));
 	    });
 
 	    console.log($scope.filteredPictures);

@@ -1,32 +1,36 @@
 div(class="row-fluid")
 	div(class="span12")
-		div(class="search")
-			input(type="text", placeholder="Search location", ng-model="query", ng-change="search()", class="searchField")
-		div
-			label Camera Look
-			label(class="radio inline")
-				input(type="radio", ng-model="cameraLook", value="null", ng-change="search()")
-				p Both
-			label(class="radio inline")
-				input(type="radio", ng-model="cameraLook", value="true", ng-change="search()")
-				p Yes
-			label(class="radio inline")
-				input(type="radio", ng-model="cameraLook", value="false", ng-change="search()")
-				p No
-		div
-			label Black & White
-			label(class="radio inline")
-				input(type="radio", ng-model="blackWhite", value="null", ng-change="search()")
-				p Both
-			label(class="radio inline")
-				input(type="radio", ng-model="blackWhite", value="true", ng-change="search()")
-				p Yes
-			label(class="radio inline")
-				input(type="radio", ng-model="blackWhite", value="false", ng-change="search()")
-				p No
+		//div(class="search")
+		//	input(type="text", placeholder="Search location", ng-model="query", ng-change="search()", class="searchField")
+		//div
+		//	label Camera Look
+		//	label(class="radio inline")
+		//		input(type="radio", ng-model="cameraLook", value="null", ng-change="search()")
+		//		p Both
+		//	label(class="radio inline")
+		//		input(type="radio", ng-model="cameraLook", value="true", ng-change="search()")
+		//		p Yes
+		//	label(class="radio inline")
+		//		input(type="radio", ng-model="cameraLook", value="false", ng-change="search()")
+		//		p No
+		div(class="filters")
+			div(class="filter")
+				//a(title="Both", ui-jq="tooltip", ng-click="blackWhite='null'; search()") Both
+				a(title="Both", ng-click="blackWhite='null'; search()", ng-class="{active: blackWhite == 'null'}") /All
+				a(title="Black & White", ng-click="blackWhite='true'; search()", ng-class="{active: blackWhite == 'true'}") /Black&White
+				a(title="Color", ng-click="blackWhite='false'; search()", ng-class="{active: blackWhite == 'false'}") /Color
+			div(class="filter")
+				a(title="All", ng-click="series='null'; search()", ng-class="{active: series == 'null'}") /All
+				a(title="Portraits", ng-click="series='Portraits'; search()", ng-class="{active: series == 'Portraits'}") /Portraits
+				a(title="Places", ng-click="series='Places'; search()", ng-class="{active: series == 'Places'}") /Places
+				a(title="Life", ng-click="series='Life'; search()", ng-class="{active: series == 'Life'}") /Life
+				a(title="Tara", ng-click="series='Tara'; search()", ng-class="{active: series == 'Tara'}") /Tara
+				a(title="Robyn", ng-click="series='Robyn'; search()", ng-class="{active: series == 'Robyn'}") /Robyn
+				a(title="WeddingMagda&Stef", ng-click="series='MagdaStef'; search()", ng-class="{active: series == 'MagdaStef'}") /WeddingMagda&Stef
+				a(title="SintJoostTenNode", ng-click="series='SJTN'; search()", ng-class="{active: series == 'SJTN'}") /SintJoostTenNode
 
 div(class="row-fluid")
 	div(class="span12")
 		div(class="menuThumb", ng-repeat="thumb in filteredPictures", ng-controller="thumbController")
 			a(ng-click="goImage()")
-				img(ng-src="/img/{{thumb.filename}}.jpg", alt="{{thumb.title}}", title="{{thumb.title}}")
+				img(ng-src="/img/thumb/{{thumb.filename}}.jpg", alt="{{thumb.title}}", title="{{thumb.title}}")

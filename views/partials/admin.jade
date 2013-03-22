@@ -40,16 +40,16 @@ div(class="row-fluid")
 				label Gender
 				label(class="radio inline")
 					input(type="radio", ng-model="picture.gender", value="None")
-					p None
+					p N
 				label(class="radio inline")
 					input(type="radio", ng-model="picture.gender", value="Male")
-					p Male
+					p M
 				label(class="radio inline")
 					input(type="radio", ng-model="picture.gender", value="Female")
-					p Female
+					p F
 				label(class="radio inline")
 					input(type="radio", ng-model="picture.gender", value="Both")
-					p Both
+					p B
 			div
 				button(class="btn", type="submit") Save Picture
 		div
@@ -68,7 +68,7 @@ div(class="row-fluid")
 						th Featured
 				tbody
 					tr(ng-repeat="picture in pics", ng-controller="editController")
-						td {{$index}}
+						td {{$index+1}}
 						td 
 							input(class="input-medium", type="text", ng-model="picture.title")
 						td 
