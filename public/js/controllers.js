@@ -71,12 +71,8 @@ function headerController($scope, $rootScope, socket, $location) {
 		$location.path('/')
 	};
 
-	$scope.goInfo = function() {
-		$location.path('/')
-	};
-
-	$scope.goContact = function() {
-		$location.path('/')
+	$scope.go = function(loc) {
+		$location.path('/' + loc)
 	};
 };
 
