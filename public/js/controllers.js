@@ -6,14 +6,14 @@ function homeController($scope, $rootScope, socket, $location, $filter) {
 
 	socket.on('init:return', function(data) {
 		$scope.pics = data.pictures;
-		$scope.filteredPictures = data.pictures;
-		console.log($scope.pics);
+		$scope.search();
 	});
 
 	$scope.query ="";
 	$scope.activeTags = [];
 	$scope.blackWhite = "null";
 	$scope.series = "null";
+	$scope.featured = "true";
 
 	// search helpers
 	var searchMatch = function (haystack, needle) {
@@ -36,7 +36,17 @@ function homeController($scope, $rootScope, socket, $location, $filter) {
 	var searchSeries = function (haystack, needle) {
 	    if (needle == "null") {
 		    return true;
-	    } else if (haystack !== needle) {
+	    } else if (haystack.toString() !== needle) {
+	    	return false
+	    } else {
+	    	return true
+	    }
+	};
+
+	var searchFeatured = function (haystack, needle) {
+	    if (needle == "null") {
+		    return true;
+	    } else if (haystack.toString() !== needle) {
 	    	return false
 	    } else {
 	    	return true
@@ -57,8 +67,7 @@ function homeController($scope, $rootScope, socket, $location, $filter) {
 		console.log("search");
 
 	    $scope.filteredPictures = $filter('filter')($scope.pics, function (picture) {
-	    	console.log(searchMatch(picture.gender, $scope.gender));
-		    return (searchSeries(picture.series, $scope.series) && searchColor(picture.blackWhite, $scope.blackWhite) && searchMatch(picture.location, $scope.query));
+		    return (searchFeatured(picture.featured, $scope.featured) && searchSeries(picture.series, $scope.series) && searchColor(picture.blackWhite, $scope.blackWhite) && searchMatch(picture.location, $scope.query));
 	    });
 
 	    console.log($scope.filteredPictures);

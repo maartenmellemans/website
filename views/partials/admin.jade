@@ -40,16 +40,16 @@ div(class="row-fluid")
 				label Gender
 				label(class="radio inline")
 					input(type="radio", ng-model="picture.gender", value="None")
-					p N
+					p None
 				label(class="radio inline")
 					input(type="radio", ng-model="picture.gender", value="Male")
-					p M
+					p Male
 				label(class="radio inline")
 					input(type="radio", ng-model="picture.gender", value="Female")
-					p F
+					p Female
 				label(class="radio inline")
 					input(type="radio", ng-model="picture.gender", value="Both")
-					p B
+					p Both
 			div
 				button(class="btn", type="submit") Save Picture
 		div
@@ -57,6 +57,7 @@ div(class="row-fluid")
 				thead
 					tr
 						th Index
+						th Thumb
 						th Title
 						th Filename
 						th Series
@@ -69,6 +70,8 @@ div(class="row-fluid")
 				tbody
 					tr(ng-repeat="picture in pics", ng-controller="editController")
 						td {{$index+1}}
+						td(class="adminThumb")
+							img(ng-src="/img/thumb/{{picture.filename}}.jpg")
 						td 
 							input(class="input-medium", type="text", ng-model="picture.title")
 						td 
@@ -88,16 +91,16 @@ div(class="row-fluid")
 						td
 							label(class="radio inline")
 								input(type="radio", ng-model="picture.gender", value="None")
-								p None
+								p N
 							label(class="radio inline")
 								input(type="radio", ng-model="picture.gender", value="Male")
-								p Male
+								p M
 							label(class="radio inline")
 								input(type="radio", ng-model="picture.gender", value="Female")
-								p Female
+								p F
 							label(class="radio inline")
 								input(type="radio", ng-model="picture.gender", value="Both")
-								p Both
+								p B
 						td 
 							label(class="checkbox")
 								input(type="checkbox", ng-model="picture.featured")

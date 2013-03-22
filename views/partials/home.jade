@@ -15,8 +15,11 @@ div(class="row-fluid")
 		//		p No
 		div(class="filters")
 			div(class="filter")
+				a(title="All", ng-click="featured='null'; search()", ng-class="{active: featured == 'null'}") /All
+				a(title="Featured", ng-click="featured='true'; search()", ng-class="{active: featured == 'true'}") /Featured
+			div(class="filter")
 				//a(title="Both", ui-jq="tooltip", ng-click="blackWhite='null'; search()") Both
-				a(title="Both", ng-click="blackWhite='null'; search()", ng-class="{active: blackWhite == 'null'}") /All
+				a(title="All", ng-click="blackWhite='null'; search()", ng-class="{active: blackWhite == 'null'}") /All
 				a(title="Black & White", ng-click="blackWhite='true'; search()", ng-class="{active: blackWhite == 'true'}") /Black&White
 				a(title="Color", ng-click="blackWhite='false'; search()", ng-class="{active: blackWhite == 'false'}") /Color
 			div(class="filter")
@@ -26,11 +29,11 @@ div(class="row-fluid")
 				a(title="Life", ng-click="series='Life'; search()", ng-class="{active: series == 'Life'}") /Life
 				a(title="Tara", ng-click="series='Tara'; search()", ng-class="{active: series == 'Tara'}") /Tara
 				a(title="Robyn", ng-click="series='Robyn'; search()", ng-class="{active: series == 'Robyn'}") /Robyn
-				a(title="WeddingMagda&Stef", ng-click="series='MagdaStef'; search()", ng-class="{active: series == 'MagdaStef'}") /WeddingMagda&Stef
+				a(title="WeddingMagda&Stef", ng-click="series='WeddingMagdaStef'; search()", ng-class="{active: series == 'MagdaStef'}") /WeddingMagda&Stef
 				a(title="SintJoostTenNode", ng-click="series='SJTN'; search()", ng-class="{active: series == 'SJTN'}") /SintJoostTenNode
 
 div(class="row-fluid")
 	div(class="span12")
 		div(class="menuThumb", ng-repeat="thumb in filteredPictures", ng-controller="thumbController")
 			a(ng-click="goImage()")
-				img(ng-src="/img/thumb/{{thumb.filename}}.jpg", alt="{{thumb.title}}", title="{{thumb.title}}")
+				img(ng-src="/img/thumb/{{thumb.filename}}.jpg", alt="{{thumb.title}}")
