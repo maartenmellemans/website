@@ -10,10 +10,9 @@ block body
       div(class="headerButtons")
        a(class="homeBtn", ng-click="goHome()")
         img(ng-src="/img/logo.png")
-       a(class="menuBtn", ng-click="go('about')") About
-       a(class="menuBtn", ng-click="go('photoshoot')") Photoshoot
-       a(class="menuBtn", ng-click="go('wedding')") Wedding
+       a(class="menuBtn", ng-click="go('info')") Information & Prices
        a(class="menuBtn", ng-click="go('coolstuff')") Other cool stuff
+       a(class="menuBtn", ng-click="go('about')") About
        a(class="menuBtn", ng-click="go('contact')") Contact
   div(class="container-fluid bodyContent")
    div(ng-view)

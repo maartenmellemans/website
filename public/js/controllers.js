@@ -133,3 +133,18 @@ function editController($scope, socket, $location) {
 	}
 }
 
+function aboutController($scope) {
+	
+}
+
+function infoController($scope) {
+	
+}
+
+function coolstuffController($scope) {
+	
+}
+
+function contactController($scope) {
+	
+}
