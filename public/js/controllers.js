@@ -1,19 +1,26 @@
 'use strict';
 
 /* Controllers */
-function homeController($scope, $rootScope, socket, $location, $filter) {
+function homeController($scope, $rootScope, socket, $location, $filter, $routeParams) {
+
+	$scope.query ="";
+	$scope.activeTags = [];
+	$scope.blackWhite = "null";
+	$scope.series = $routeParams.filter;
+	$scope.featured = "true";
+
+	if ($scope.series == 'All' || $scope.series == undefined) {
+		$scope.featured = 'true';
+	} else {
+		$scope.featured = 'null';
+	}
+
 	socket.emit('init:send');
 
 	socket.on('init:return', function(data) {
 		$scope.pics = data.pictures;
 		$scope.search();
 	});
-
-	$scope.query ="";
-	$scope.activeTags = [];
-	$scope.blackWhite = "null";
-	$scope.series = "null";
-	$scope.featured = "true";
 
 	// search helpers
 	var searchMatch = function (haystack, needle) {
@@ -65,6 +72,9 @@ function homeController($scope, $rootScope, socket, $location, $filter) {
 
 	$scope.search = function () {
 		console.log("search");
+		if ($scope.series == 'All' || $scope.series == undefined) {
+			$scope.series='null';
+		}
 
 	    $scope.filteredPictures = $filter('filter')($scope.pics, function (picture) {
 		    return (searchFeatured(picture.featured, $scope.featured) && searchSeries(picture.series, $scope.series) && searchColor(picture.blackWhite, $scope.blackWhite) && searchMatch(picture.location, $scope.query));
@@ -72,6 +82,10 @@ function homeController($scope, $rootScope, socket, $location, $filter) {
 
 	    console.log($scope.filteredPictures);
 
+	};
+
+	$scope.goSeries = function(serie) {
+		$location.path('/' + serie)
 	};
 };
 
@@ -111,17 +125,72 @@ function adminController($scope, socket) {
 	}
 };
 
-function imageController($scope, $rootScope, socket, $routeParams) {
+function imageController($scope, $rootScope, socket, $routeParams, $filter, $location) {
+	$scope.serie = $routeParams.series;
 	$scope.filename = $routeParams.filename;
+
+	socket.emit('init:send');
+
+	socket.on('init:return', function(data) {
+		$scope.pics = data.pictures;
+		$scope.search();
+	});
+
+	var searchSeries = function (haystack, needle) {
+	    if (needle == "null") {
+		    return true;
+	    } else if (haystack.toString() !== needle) {
+	    	return false
+	    } else {
+	    	return true
+	    }
+	};
+
+	$scope.search = function () {
+		console.log("search");
+
+	    $scope.filteredPictures = $filter('filter')($scope.pics, function (picture) {
+		    return (searchSeries(picture.series, $scope.serie));
+	    });
+
+	    console.log($scope.filteredPictures);
+
+	};
 
 	$scope.goHome = function() {
 		$location.path('/');
 	}
+
+	var arrayObjectIndexOf = function (myArray, searchTerm, property) {
+    	for(var i = 0, len = myArray.length; i < len; i++) {
+        	if (myArray[i][property] === searchTerm) {
+        		return i;
+        	}
+    	}
+    	return -1;
+	}
+
+	$scope.goNextImage = function() {
+		console.log("next image");
+		var arrayPlace = arrayObjectIndexOf($scope.filteredPictures, $scope.filename, "filename");
+
+
+		console.log(arrayPlace);
+		console.log($scope.filteredPictures.length);
+
+		if (arrayPlace == $scope.filteredPictures.length-1) {
+			$location.path('/' + $scope.serie + '/' + $scope.filteredPictures[0].filename);
+		} else {
+			$location.path('/' + $scope.serie + '/' + $scope.filteredPictures[arrayPlace+1].filename);
+		}
+		
+	}
 };
 
 function thumbController($scope, $location) {
+
 	$scope.goImage = function() {
-		$location.path('/image/' + $scope.thumb.filename);
+		$location.path('/' + $scope.thumb.series + '/' + $scope.thumb.filename);
 	}
 }
 

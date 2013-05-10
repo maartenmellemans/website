@@ -23,15 +23,15 @@ div(class="row-fluid")
 				a(title="Black & White", ng-click="blackWhite='true'; search()", ng-class="{active: blackWhite == 'true'}") /Black&White
 				a(title="Color", ng-click="blackWhite='false'; search()", ng-class="{active: blackWhite == 'false'}") /Color
 			div(class="filter")
-				a(title="All", ng-click="series='null'; search()", ng-class="{active: series == 'null'}") /All
-				a(title="Portraits", ng-click="series='Portraits'; search()", ng-class="{active: series == 'Portraits'}") /Portraits
-				a(title="Places", ng-click="series='Places'; search()", ng-class="{active: series == 'Places'}") /Places
-				a(title="Life", ng-click="series='Life'; search()", ng-class="{active: series == 'Life'}") /Life
-				a(title="Ann", ng-click="series='Ann'; search()", ng-class="{active: series == 'Ann'}") /Ann
-				a(title="Tara", ng-click="series='Tara'; search()", ng-class="{active: series == 'Tara'}") /Tara
-				a(title="Robyn", ng-click="series='Robyn'; search()", ng-class="{active: series == 'Robyn'}") /Robyn
-				a(title="WeddingMagda&Stef", ng-click="series='WeddingMagdaStef'; search()", ng-class="{active: series == 'WeddingMagdaStef'}") /WeddingMagda&Stef
-				a(title="SintJoostTenNode", ng-click="series='SJTN'; search()", ng-class="{active: series == 'SJTN'}") /SintJoostTenNode
+				a(title="All", ng-click="goSeries('All')", ng-class="{active: series == 'null'}") /All
+				a(title="Portraits", ng-click="goSeries('Portraits')", ng-class="{active: series == 'Portraits'}") /Portraits
+				a(title="Places", ng-click="goSeries('Places')", ng-class="{active: series == 'Places'}") /Places
+				a(title="Life", ng-click="goSeries('Life')", ng-class="{active: series == 'Life'}") /Life
+				a(title="Ann", ng-click="goSeries('Ann')", ng-class="{active: series == 'Ann'}") /Ann
+				a(title="Tara", ng-click="goSeries('Tara')", ng-class="{active: series == 'Tara'}") /Tara
+				a(title="Robyn", ng-click="goSeries('Robyn')", ng-class="{active: series == 'Robyn'}") /Robyn
+				a(title="WeddingMagda&Stef", ng-click="goSeries('WeddingMagdaStef')", ng-class="{active: series == 'WeddingMagdaStef'}") /WeddingMagda&Stef
+				a(title="SintJoostTenNode", ng-click="goSeries('SJTN')", ng-class="{active: series == 'SJTN'}") /SintJoostTenNode
 
 
 div(class="row-fluid")

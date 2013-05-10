@@ -1,4 +1,11 @@
 div(class="row-fluid")
 	div(class="span12")
 		div(class="mainImage")
-			img(ng-src="/img/big/{{filename}}.jpg")
+			a(ng-click="goNextImage()")
+				img(ng-src="/img/big/{{filename}}.jpg")
+
+div(class="row-fluid")
+	div(class="span12")
+		div(class="imageThumb", ng-repeat="thumb in filteredPictures", ng-controller="thumbController")
+			a(ng-click="goImage()")
+				img(ng-src="/img/thumb/{{thumb.filename}}.jpg", alt="{{thumb.title}}")

@@ -5,8 +5,9 @@
 var myApp = angular.module('myApp', ['myApp.filters', 'myApp.postFix' ,'myApp.services', 'myApp.directives', 'ui']).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {templateUrl: 'partials/home', controller: homeController});
+    $routeProvider.when('/:filter', {templateUrl: 'partials/home', controller: homeController});
     $routeProvider.when('/admin', {templateUrl: 'partials/admin', controller: adminController});
-    $routeProvider.when('/image/:filename', {templateUrl: 'partials/image', controller: imageController});
+    $routeProvider.when('/:series/:filename', {templateUrl: 'partials/image', controller: imageController});
     $routeProvider.when('/about', {templateUrl: 'partials/about', controller: aboutController});
     $routeProvider.when('/info', {templateUrl: 'partials/info', controller: infoController});
     $routeProvider.when('/coolstuff', {templateUrl: 'partials/coolstuff', controller: coolstuffController});
