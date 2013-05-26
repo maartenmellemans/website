@@ -206,8 +206,10 @@ function aboutController($scope) {
 	
 }
 
-function infoController($scope) {
-	
+function infoController($scope, $location) {
+	$scope.go = function(loc) {
+		$location.path('/' + loc)
+	};
 }
 
 function coolstuffController($scope) {
