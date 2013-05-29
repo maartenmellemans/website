@@ -39,37 +39,4 @@ angular.module('myApp.services', [], function($provide) {
          },
       };
    });
-
-   $provide.factory('loginService', function ($http) {
-         var loginService = function LoginService() {
-         };
-
-         loginService.prototype.post = function (username, password, callback) {
-            $http.post('/login', {username:username.toLowerCase(), password:password}).success(callback).error(callback);
-         };
-
-         return new loginService();
-      });
-
-   $provide.factory('logoutService', function ($http) {
-         var logoutService = function LogoutService() {
-         };
-
-         logoutService.prototype.post = function (callback) {
-            $http.post('/logout').success(callback);
-         };
-
-         return new logoutService();
-      });
-
-    $provide.factory('validateService', function ($http) {
-         var validateService = function ValidateService() {
-         };
-
-         validateService.prototype.post = function (username, password, callback) {
-            $http.post('/validate', {username:username.toLowerCase(), password:password}).success(callback).error(callback);
-         };
-
-         return new validateService();
-      });
 });

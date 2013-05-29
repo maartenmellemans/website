@@ -174,10 +174,6 @@ function imageController($scope, $rootScope, socket, $routeParams, $filter, $loc
 		console.log("next image");
 		var arrayPlace = arrayObjectIndexOf($scope.filteredPictures, $scope.filename, "filename");
 
-
-		console.log(arrayPlace);
-		console.log($scope.filteredPictures.length);
-
 		if (arrayPlace == $scope.filteredPictures.length-1) {
 			$location.path('/' + $scope.serie + '/' + $scope.filteredPictures[0].filename);
 		} else {
@@ -210,10 +206,6 @@ function infoController($scope, $location) {
 	$scope.go = function(loc) {
 		$location.path('/' + loc)
 	};
-}
-
-function coolstuffController($scope) {
-	
 }
 
 function contactController($scope) {
